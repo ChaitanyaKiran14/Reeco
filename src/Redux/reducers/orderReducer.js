@@ -17,6 +17,18 @@ const orderSlice = createSlice({
         product.status = status;
       }
     },
+
+    markProductMissing: (state, action) => {
+      const { productId, isUrgent } = action.payload;
+      const product = state.products.find((p) => p.id === productId);
+
+      if (product) {
+        product.status = isUrgent ? "Missing – Urgent" : "Missing";
+      }
+    },
+  
+
+
     approveAllProducts: (state) => {
       state.products.forEach((product) => {
         product.status = "Approved";
@@ -31,6 +43,7 @@ const orderSlice = createSlice({
 export const {
   addProduct,
   updateProductStatus,
+  markProductMissing,
   approveAllProducts,
   resetOrder,
 } = orderSlice.actions;
