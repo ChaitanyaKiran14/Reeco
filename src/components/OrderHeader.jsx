@@ -9,14 +9,14 @@ const OrderHeader = () => {
   };
 
   return (
-    <div className="w-[85%] mx-auto py-2 flex flex-col gap-y-3">
+    <div style={{ width: "85%", margin: "auto", padding: "8px 0", display: "flex", flexDirection: "column", gap: "12px" }}>
       <p>
         Orders &gt;&nbsp;
-        <span className="underline underline-offset-4">Order 32457ABC</span>
+        <span style={{ textDecoration: "underline", textDecorationOffset: "4px" }}>Order 32457ABC</span>
       </p>
-      <div className="flex justify-between items-center">
-        <p className="font-semibold text-xl">Order 32457ABC</p>
-        <div className="flex gap-x-4">
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <p style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Order 32457ABC</p>
+        <div style={{ display: "flex", gap: "16px" }}>
           <Button text={"Back"} type="secondary" />
           <Button onClick={handleApproveAllProducts} text={"Approve Order"} />
         </div>
