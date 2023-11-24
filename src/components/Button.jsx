@@ -1,23 +1,13 @@
 const Button = ({ text, type = "primary", onClick }) => {
-  const btnStyle = {
-    borderRadius: "12px",
-    fontWeight: "bold",
-    padding: "8px 24px",
-    fontSize: "0.875rem",
-    cursor: "pointer",
-  };
-
-  if (type === "primary") {
-    btnStyle.color = "#ffffff";
-    btnStyle.backgroundColor = "#008000";
-  } else {
-    btnStyle.color = "#008000";
-    btnStyle.backgroundColor = "#ffffff";
-    btnStyle.border = "1px solid #008000";
-  }
-
+  const btnCss =
+    type === "primary"
+      ? "text-white bg-green-800"
+      : "text-green-800 bg-white border border-green-800";
   return (
-    <button onClick={onClick} style={btnStyle}>
+    <button
+      onClick={onClick}
+      className={`${btnCss} rounded-3xl font-bold px-6 py-2 text-sm`}
+    >
       {text}
     </button>
   );

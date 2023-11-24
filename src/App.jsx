@@ -6,10 +6,10 @@ import Dashboard from "./components/Dashboard";
 function App() {
   return (
     <div id="app">
-      <div style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)", background: "#ffffff", width: "100%", paddingBottom: "1px" }}>
+      <div className="shadow-md bg-white w-full pb-1">
         <OrderHeader />
       </div>
-      <div style={{ width: "85%", margin: "16px auto", display: "flex", flexDirection: "column" }}>
+      <div className="w-[85%] my-4 mx-auto flex flex-col">
         <SupplierDetails />
         <Dashboard />
       </div>
@@ -18,4 +18,3 @@ function App() {
 }
 
 export default App;
-

@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import { sampleProducts } from "../data/order-data";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, updateProductStatus } from "../Redux/reducers/orderReducer";
+import {
+  addProduct,
+  updateProductStatus,
+} from "../Redux/reducers/orderReducer";
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,11 +38,11 @@ const Dashboard = () => {
 
   const mapTables = () =>
     filteredProducts?.map((product) => (
-      <tr key={product.id} style={{ textAlign: "left" }}>
-        <td style={{ width: "20%" }}>
-          <img src="src/assets/Avocado Hass.jpg" alt="product" />
+      <tr key={product.id} className="text-left">
+        <td className="w-20">
+          <img src="src/assets/Avocado Hass.jpg" />
         </td>
-        <td style={{ padding: "2px 4px", fontWeight: "medium", color: "#333" }}>
+        <td className="px-2 py-4 font-medium text-gray-900 line-clamp-2">
           {product.name}
         </td>
         <td>{product.brand}</td>
@@ -48,55 +51,52 @@ const Dashboard = () => {
         <td>{Number(product.id) * Number(product.price)}</td>
         <td>
           <p
-            style={{
-              borderRadius: "12px",
-              padding: "8px 16px",
-              fontWeight: "medium",
-              color: "#ffffff",
-              textAlign: "center",
-              width: "85%",
-              backgroundColor:
-                product.status === "Approved"
-                  ? "#008000"
-                  : product.status === "Missing"
-                  ? "#e53e3e"
-                  : "",
-            }}
+            className={`rounded-3xl px-4 font-medium text-white text-center w-[85%] py-2 ${
+              product.status == "Approved" && "bg-green-500"
+            } ${product.status == "Missing" && "bg-red-600"}`}
           >
             {product.status}
           </p>
         </td>
-        <td style={{ padding: "6px 4px", textAlign: "right", display: "flex", justifyContent: "flex-end", gap: "8px" }}>
-          <button style={{ fontSize: "1.125rem" }} onClick={() => handleStatusUpdate(product.id, "Approved")}>
+        <td className="px-6 py-4 text-right flex justify-end gap-x-4">
+          <button
+            className="text-lg"
+            onClick={() => handleStatusUpdate(product.id, "Approved")}
+          >
             ✓
           </button>
-          <button style={{ fontSize: "1.125rem" }} onClick={() => handleStatusUpdate(product.id, "Missing")}>
+          <button
+            className="text-lg"
+            onClick={() => handleStatusUpdate(product.id, "Missing")}
+          >
             X
           </button>
-          <button style={{ fontWeight: "medium", color: "#3182ce", textDecoration: "underline" }}>Edit</button>
+          <button className="font-medium text-blue-600 hover:underline">
+            Edit
+          </button>
         </td>
       </tr>
     ));
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", borderRadius: "12px", background: "#ffffff", border: "2px solid #008000", padding: "20px 14px", width: "100%", justifyContent: "center", marginBottom: "4px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+    <div className="flex flex-col rounded-2xl bg-white divide-x-2 py-5 px-14 w-full justify-center mb-4">
+      <div className="flex justify-between w-full">
         <input
-          style={{ border: "2px solid #000000", borderRadius: "12px", paddingLeft: "10px", width: "40%" }}
+          className="border-2 rounded-2xl pl-4 w-2/6"
           type="text"
           placeholder="Search..."
           value={searchQuery}
           onChange={handleSearchInputChange}
         />
-        <div style={{ display: "flex", alignItems: "center", gap: "5px", color: "#008000" }}>
+        <div className="flex items-center gap-x-5 text-green-800">
           <Button type="secondary" text={"Add Item"} />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="#008000"
-            style={{ width: "24px", height: "24px" }}
+            stroke="currentColor"
+            className="w-6 h-6"
           >
             <path
               strokeLinecap="round"
@@ -107,27 +107,27 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div style={{ overflowX: "auto", borderRadius: "12px", marginTop: "4px" }}>
-        <table style={{ width: "100%", fontSize: "0.875rem", textAlign: "left", color: "#999", borderCollapse: "collapse", borderTop: "2px solid #999", borderRight: "2px solid #999", borderLeft: "0", borderBottom: "0" }}>
-          <thead style={{ fontSize: "0.75rem", color: "#333", textTransform: "uppercase", backgroundColor: "#edf2f7", borderBottom: "2px solid #999" }}>
+      <div className="overflow-x-auto rounded-t-lg mt-4">
+        <table className="w-full text-sm text-left text-gray-500 border-t-2 border-r-2 border-l-0 border-collapse">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2">
             <tr>
-              <th scope="col" style={{ padding: "6px", width: "5%" }}></th>
-              <th scope="col" style={{ padding: "3px 6px", width: "20%" }}>
+              <th scope="col" className="px-6 py-3 w-[5%]"></th>
+              <th scope="col" className="px-2 py-3 w-[20%]">
                 Product name
               </th>
-              <th scope="col" style={{ paddingRight: "6px", padding: "3px 6px", width: "15%" }}>
+              <th scope="col" className="pr-6 py-3 w-[15%]">
                 Brand
               </th>
-              <th scope="col" style={{ paddingRight: "6px", padding: "3px 6px", width: "15%" }}>
+              <th scope="col" className="pr-6 py-3 w-[15%]">
                 Price
               </th>
-              <th scope="col" style={{ paddingRight: "6px", padding: "3px 6px", width: "15%" }}>
+              <th scope="col" className="pr-6 py-3 w-[15%]">
                 Quantity
               </th>
-              <th scope="col" style={{ paddingRight: "6px", padding: "3px 6px", width: "15%" }}>
+              <th scope="col" className="pr-6 py-3 w-[15%]">
                 Total
               </th>
-              <th scope="col" style={{ paddingRight: "6px", padding: "3px 6px", width: "25%" }}>
+              <th scope="col" className="pr-6 py-3 w-[25%]">
                 Status
               </th>
             </tr>
